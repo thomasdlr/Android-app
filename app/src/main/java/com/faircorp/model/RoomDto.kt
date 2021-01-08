@@ -4,4 +4,5 @@ data class RoomDto(val id: Long,
                    val name: String,
                    val currentTemperature: Double?,
                    val targetTemperature: Double?,
-                   val windows: List<String>)
+                   val floor: Integer?,
+                   val building: BuildingDto?)

@@ -17,12 +17,9 @@ open class BasicActivity : AppCompatActivity()  {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.menu_windows -> startActivity(
-                Intent(this, WindowsActivity::class.java)
-            )
 
             R.id.menu_rooms -> startActivity(
-                    Intent(this, RoomsActivity::class.java)
+                Intent(this, RoomsActivity::class.java)
             )
 
             R.id.menu_website -> startActivity(

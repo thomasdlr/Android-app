@@ -3,10 +3,17 @@ package com.faircorp.model
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.faircorp.R
 import com.faircorp.WindowsActivity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.security.AccessController.getContext
 
 class WindowAdapter(val listener: WindowsActivity): RecyclerView.Adapter<WindowAdapter.WindowViewHolder>() {
 
@@ -17,6 +24,8 @@ class WindowAdapter(val listener: WindowsActivity): RecyclerView.Adapter<WindowA
     }
 
     private val items = mutableListOf<WindowDto>() // (3)
+
+
 
     fun update(windows: List<WindowDto>) {  // (4)
         items.clear()
@@ -32,13 +41,19 @@ class WindowAdapter(val listener: WindowsActivity): RecyclerView.Adapter<WindowA
         return WindowViewHolder(view)
     }
 
+
     override fun onBindViewHolder(holder: WindowViewHolder, position: Int) {
-        val window = items[position]
+        var window = items[position]
+
         holder.apply {
             name.text = window.name
-            status.text = window.status.toString()
+            status.text = window.windowStatus.toString()
             room.text = window.room.name
-            itemView.setOnClickListener { listener.OnWindowSelected(window.id) } // (1)
+
+            itemView.setOnClickListener { listener.OnWindowSelected(window.id) }
+
+
+
         }
     }
 

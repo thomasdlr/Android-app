@@ -12,6 +12,11 @@ class RoomAdapter(val listener: RoomsActivity): RecyclerView.Adapter<RoomAdapter
 
     inner class RoomViewHolder(view: View) : RecyclerView.ViewHolder(view) { // (2)
         val name: TextView = view.findViewById(R.id.txt_room)
+        val current_temp: TextView = view.findViewById(R.id.txt_room_current_temp)
+        val target_temp: TextView = view.findViewById(R.id.txt_room_target_temp)
+        val floor: TextView = view.findViewById(R.id.txt_floor)
+        val building: TextView = view.findViewById(R.id.txt_building)
+
     }
 
     private val items = mutableListOf<RoomDto>() // (3)
@@ -34,6 +39,19 @@ class RoomAdapter(val listener: RoomsActivity): RecyclerView.Adapter<RoomAdapter
         val room = items[position]
         holder.apply {
             name.text = room.name
+
+            //We print the value of the characteristics of the room
+
+            val st1 = room.currentTemperature?.toString()
+            val st2 = room.targetTemperature?.toString()
+            val st3 = room.floor?.toString()
+            val st4 = room.building?.name
+
+            current_temp.text = "Current temperature : $st1"
+            target_temp.text = "Target temperature : $st2"
+            floor.text = "Floor : $st3"
+            building.text = "Building : $st4"
+
             itemView.setOnClickListener { listener.OnRoomSelected(room.id) } // (1)
         }
     }
